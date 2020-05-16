@@ -25,6 +25,10 @@ counselors_email = database.iloc[:, 5]
 
 mail_status = database.iloc[:, 9]
 
+# Printing the total of each matrix
+print("Total number of chairs : ", len(chairs))
+print("Total number of counselors : ", len(counselors))
+
 # Configuring the mail 
 from_address = input("Enter your email ID : ")
 password = input('Enter your mail password : ')
@@ -55,15 +59,31 @@ smtpobj.login(from_address, password)
 for i in range(0, len(chairs)):
     
     # First sending mail to chair
-    msg['To'] = chairs_email[i]
-    text = msg.as_string()
-    smtpobj.sendmail(from_address, chairs_email[i], text)
+    if(chairs[i] != '-' and chairs_email[i] != '-'):
+        msg['To'] = chairs_email[i]
+        text = msg.as_string()
+        smtpobj.sendmail(from_address, chairs_email[i], text)
+    else:
+        print(chairs[i], " Could not be sent a mail!", '\ncheck index ',
+              i+1)
+        
+    print("No. of chairs sent mail : ", i+1)
     
     # Next sending the same mail to counselor
-    msg['To'] = counselors_email[i]
-    text = msg.as_string()
-    smtpobj.sendmail(from_address, counselors_email[i], text)
-    
+    if(counselors[i] != '-' and counselors_email[i] != '-'):
+        msg['To'] = counselors_email[i]
+        text = msg.as_string()
+        smtpobj.sendmail(from_address, counselors_email[i], text)
+        
+        # Marking the status of mail sent or not
+        mail_status[i] = 'Sent'
+    else:
+        print(counselors[i], "could not be sent a mail!", "\ncheck index ",
+              i+1)
+        mail_status[i] = 'Not Sent'
+        
+    print("No. of counselors sent mail : ", i+1)
+       
 smtpobj.quit()
     
 
