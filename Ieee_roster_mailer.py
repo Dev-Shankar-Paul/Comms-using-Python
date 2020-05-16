@@ -13,6 +13,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 import os
 
+app_spec_pass = "rmtzkgjrizvzqdmy"
 database = pd.read_csv('/home/dsp/PROJECTS/Comms-using-Python/Roster_Test - Sheet1.csv')
 
 # Setting up the matrices where the data is stored
