@@ -31,6 +31,7 @@ smtpObject.quit()
 """
 
 # Levelling up. Sending attachments in an email 
+"""
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -70,6 +71,6 @@ smtpobj.login(from_address, password)
 text = msg.as_string()
 smtpobj.sendmail(from_address, to_address, text)
 smtpobj.quit()
-
+"""
 
 
