@@ -55,6 +55,7 @@ NEW CODE
 """
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 location = '/home/dsp/Downloads/chromedriver_linux64/chromedriver'
@@ -67,8 +68,11 @@ count = input('Enter the number of times you want to send message : ')
 
 input('Enter something after scanning QR Code....')
 
-user =  driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
-user.click()
+element =  driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
+actions = ActionChains(driver)
+actions.move_to_element(element).perform()
+
+element.click()
 
 inp_xpath = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'
 input_box = driver.find_element_by_xpath(inp_xpath)
